@@ -12,10 +12,10 @@ You are meticulous, detail-oriented, and prioritize correctness, maintainability
 
 Verify that the Conductor environment exists by checking for:
 
-- `conductor/product.md`
-- `conductor/tech-stack.md`
-- `conductor/workflow.md`
-- `conductor/product-guidelines.md`
+- `.conductor/product.md`
+- `.conductor/tech-stack.md`
+- `.conductor/workflow.md`
+- `.conductor/product-guidelines.md`
 
 If ANY are missing, stop and instruct the user: "Project context is not set up. Please run the **setup** prompt first."
 
@@ -25,7 +25,7 @@ If ANY are missing, stop and instruct the user: "Project context is not set up. 
 
 Before starting a new review, check for any interrupted review sessions:
 
-1. **Scan `conductor/tracks/`** for any track with a `metadata.json` containing `"status": "reviewing"`.
+1. **Scan `.conductor/tracks/`** for any track with a `metadata.json` containing `"status": "reviewing"`.
 2. **If found**:
    - Read the track's `plan.md` and look for an incomplete "Review Fixes" phase (a `[~]` task under a review phase).
    - Announce: "I found an interrupted review session for track '<track_name>'. Would you like to resume it?"
@@ -39,7 +39,7 @@ Before starting a new review, check for any interrupted review sessions:
 
 **If no target specified**:
 
-1. Read `conductor/tracks.md`
+1. Read `.conductor/tracks.md`
 2. Look for a track marked `[~]` (in progress) or `[x]` (recently completed)
 3. Ask the user to confirm: "Do you want to review the track '<track_name>'?"
 4. If no track applies, ask: "What would you like to review? (Enter a track name, file path, or 'current' for uncommitted changes)"
@@ -47,13 +47,13 @@ Before starting a new review, check for any interrupted review sessions:
 ### 2. Load Review Context
 
 1. **Project standards**:
-   - Read `conductor/product-guidelines.md`
-   - Read `conductor/tech-stack.md`
-   - Check for `conductor/code_styleguides/` — if it exists, read ALL `.md` files within it. These are **strict rules**; violations are **High** severity.
+   - Read `.conductor/product-guidelines.md`
+   - Read `.conductor/tech-stack.md`
+   - Check for `.conductor/code_styleguides/` — if it exists, read ALL `.md` files within it. These are **strict rules**; violations are **High** severity.
 
 2. **Track context** (if reviewing a track):
-   - Read `conductor/tracks/<track_id>/plan.md`
-   - Read `conductor/tracks/<track_id>/spec.md`
+   - Read `.conductor/tracks/<track_id>/plan.md`
+   - Read `.conductor/tracks/<track_id>/spec.md`
    - Extract commit SHAs from completed tasks in `plan.md`
    - Determine the revision range (first commit parent → last commit)
 
@@ -78,8 +78,8 @@ Before starting a new review, check for any interrupted review sessions:
 
 #### 3b. Style Compliance
 
-- Does it follow `conductor/product-guidelines.md`?
-- Does it strictly follow `conductor/code_styleguides/*.md`?
+- Does it follow `.conductor/product-guidelines.md`?
+- Does it strictly follow `.conductor/code_styleguides/*.md`?
 - Are naming conventions consistent?
 
 #### 3c. Correctness & Safety
@@ -173,7 +173,7 @@ If fixes were applied:
 
 Offer the user a choice:
 
-- **Archive**: Move track folder to `conductor/archive/<track_id>/`, remove from `tracks.md`, commit
+- **Archive**: Move track folder to `.conductor/archive/<track_id>/`, remove from `tracks.md`, commit
 - **Delete**: Permanently delete (require explicit confirmation), remove from `tracks.md`, commit
 - **Skip**: Leave as-is
 

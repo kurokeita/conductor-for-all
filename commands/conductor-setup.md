@@ -1,5 +1,5 @@
 ---
-description: Analyze the current project and generate all Conductor context documents (product, tech stack, workflow). Run once per project to initialize the conductor/ directory.
+description: Analyze the current project and generate all Conductor context documents (product, tech stack, workflow). Run once per project to initialize the .conductor/ directory.
 ---
 
 # Setup
@@ -12,7 +12,7 @@ Your goal is to analyze the project, collaborate with the user, and generate str
 
 ### 0. Resume Check
 
-Before starting, check for `conductor/setup_state.json`.
+Before starting, check for `.conductor/setup_state.json`.
 
 - **If it does NOT exist**: This is a fresh setup. Proceed to Step 1.
 - **If it exists**: Read its content. The `last_completed_step` field indicates the last successfully completed step. Resume from the **next** step:
@@ -49,12 +49,12 @@ Announce the detected state to the user.
 mkdir -p conductor
 ```
 
-If a `conductor/index.md` already exists AND there is no `conductor/setup_state.json` (or its `last_completed_step` is `"complete"`), announce that the project context is already initialized. Ask the user if they want to **re-initialize** (overwrite) or **update** (selectively regenerate specific documents). If they choose update, ask which documents to regenerate and skip the rest.
+If a `.conductor/index.md` already exists AND there is no `.conductor/setup_state.json` (or its `last_completed_step` is `"complete"`), announce that the project context is already initialized. Ask the user if they want to **re-initialize** (overwrite) or **update** (selectively regenerate specific documents). If they choose update, ask which documents to regenerate and skip the rest.
 
 **Initialize the state file** (if it doesn't exist):
 
 ```bash
-echo '{"last_completed_step": "detect_project"}' > conductor/setup_state.json
+echo '{"last_completed_step": "detect_project"}' > .conductor/setup_state.json
 ```
 
 ### 3. Analyze the Codebase (Brownfield Only)
@@ -72,7 +72,7 @@ For existing projects, perform a **read-only** analysis:
    - Architecture pattern (monorepo, microservices, MVC, etc.)
    - Project purpose (from README or manifest descriptions)
 
-### 4. Generate Product Definition (`conductor/product.md`)
+### 4. Generate Product Definition (`.conductor/product.md`)
 
 **For Greenfield**: Ask the user: "What do you want to build?" Use their response as the foundation.
 
@@ -85,11 +85,11 @@ For existing projects, perform a **read-only** analysis:
 - **Key features**: What are the main capabilities?
 - **Constraints**: Any business/technical constraints?
 
-Present the draft to the user for approval. Revise until confirmed, then write to `conductor/product.md`.
+Present the draft to the user for approval. Revise until confirmed, then write to `.conductor/product.md`.
 
-**Save state**: Write `{"last_completed_step": "product"}` to `conductor/setup_state.json`.
+**Save state**: Write `{"last_completed_step": "product"}` to `.conductor/setup_state.json`.
 
-### 5. Generate Product Guidelines (`conductor/product-guidelines.md`)
+### 5. Generate Product Guidelines (`.conductor/product-guidelines.md`)
 
 Offer two modes: **Interactive** (guided questions) or **Autogenerate** (best-practice defaults).
 
@@ -102,11 +102,11 @@ Cover these areas:
 
 For Brownfield projects, analyze existing code/docs to suggest guidelines that match the established style.
 
-Present draft for approval, then write to `conductor/product-guidelines.md`.
+Present draft for approval, then write to `.conductor/product-guidelines.md`.
 
-**Save state**: Write `{"last_completed_step": "product_guidelines"}` to `conductor/setup_state.json`.
+**Save state**: Write `{"last_completed_step": "product_guidelines"}` to `.conductor/setup_state.json`.
 
-### 6. Generate Tech Stack (`conductor/tech-stack.md`)
+### 6. Generate Tech Stack (`.conductor/tech-stack.md`)
 
 **For Greenfield**: Offer Interactive or Autogenerate. Cover:
 
@@ -120,11 +120,11 @@ Present draft for approval, then write to `conductor/product-guidelines.md`.
 
 **For Brownfield**: State the inferred tech stack and ask for confirmation. Document what exists, don't propose changes.
 
-Present draft for approval, then write to `conductor/tech-stack.md`.
+Present draft for approval, then write to `.conductor/tech-stack.md`.
 
-**Save state**: Write `{"last_completed_step": "tech_stack"}` to `conductor/setup_state.json`.
+**Save state**: Write `{"last_completed_step": "tech_stack"}` to `.conductor/setup_state.json`.
 
-### 7. Generate Workflow (`conductor/workflow.md`)
+### 7. Generate Workflow (`.conductor/workflow.md`)
 
 Create a development workflow document. Offer **Default** (standard TDD workflow) or **Customize**.
 
@@ -143,9 +143,9 @@ If the user chooses to customize, ask about:
 - Whether to use TDD or write tests after implementation
 - Any additional workflow steps
 
-Write the result to `conductor/workflow.md`. **Adapt all commands and tool references to the project's actual tech stack.**
+Write the result to `.conductor/workflow.md`. **Adapt all commands and tool references to the project's actual tech stack.**
 
-**Save state**: Write `{"last_completed_step": "workflow"}` to `conductor/setup_state.json`.
+**Save state**: Write `{"last_completed_step": "workflow"}` to `.conductor/setup_state.json`.
 
 The workflow document must use this template:
 
@@ -369,7 +369,7 @@ A task is complete when:
 9. Git note with task summary attached to the commit
 ````
 
-### 8. Create Tracks Registry (`conductor/tracks.md`)
+### 8. Create Tracks Registry (`.conductor/tracks.md`)
 
 ```markdown
 # Project Tracks
@@ -378,7 +378,7 @@ This file tracks all major tracks (features, bugs, chores) for the project.
 Each track has its own detailed plan in its respective folder.
 ```
 
-### 9. Create Project Index (`conductor/index.md`)
+### 9. Create Project Index (`.conductor/index.md`)
 
 ```markdown
 # Project Context
@@ -403,11 +403,11 @@ If `.git` does not exist, run `git init`.
 Stage and commit all conductor files:
 
 ```bash
-git add conductor/
+git add .conductor/
 git commit -m "conductor(setup): Initialize project context"
 ```
 
-**Save state**: Write `{"last_completed_step": "complete"}` to `conductor/setup_state.json`.
+**Save state**: Write `{"last_completed_step": "complete"}` to `.conductor/setup_state.json`.
 
 ### 11. Announce Completion
 
@@ -421,15 +421,15 @@ Summarize what was created and inform the user:
 
 ## File Resolution
 
-When looking for conductor files, always check `conductor/index.md` first and follow its links. Fall back to these default paths:
+When looking for conductor files, always check `.conductor/index.md` first and follow its links. Fall back to these default paths:
 
 | Document | Default Path |
 | --- | --- |
-| Product Definition | `conductor/product.md` |
-| Tech Stack | `conductor/tech-stack.md` |
-| Workflow | `conductor/workflow.md` |
-| Product Guidelines | `conductor/product-guidelines.md` |
-| Tracks Registry | `conductor/tracks.md` |
-| Tracks Directory | `conductor/tracks/` |
+| Product Definition | `.conductor/product.md` |
+| Tech Stack | `.conductor/tech-stack.md` |
+| Workflow | `.conductor/workflow.md` |
+| Product Guidelines | `.conductor/product-guidelines.md` |
+| Tracks Registry | `.conductor/tracks.md` |
+| Tracks Directory | `.conductor/tracks/` |
 
 Always verify that resolved paths actually exist on disk before reading.

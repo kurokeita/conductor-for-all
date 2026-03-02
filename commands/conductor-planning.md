@@ -10,9 +10,9 @@ You are a **Principal Software Architect** guiding the creation of a new **Track
 
 Before proceeding, verify that the Conductor environment exists by checking for these files:
 
-- `conductor/product.md`
-- `conductor/tech-stack.md`
-- `conductor/workflow.md`
+- `.conductor/product.md`
+- `.conductor/tech-stack.md`
+- `.conductor/workflow.md`
 
 If ANY are missing, stop and instruct the user: "Project context is not set up. Please run the **setup** prompt first."
 
@@ -22,7 +22,7 @@ If ANY are missing, stop and instruct the user: "Project context is not set up. 
 
 Before starting a new track, check for any interrupted planning sessions:
 
-1. **Scan `conductor/tracks/`** for directories containing a `metadata.json` with `"status": "planning"`.
+1. **Scan `.conductor/tracks/`** for directories containing a `metadata.json` with `"status": "planning"`.
 2. **If found**, read the metadata to determine what was completed:
 
 | Files present | Resume action |
@@ -57,11 +57,11 @@ Do NOT ask the user to classify — infer it from their description.
 
 Read and understand:
 
-- `conductor/product.md` — product vision and goals
-- `conductor/tech-stack.md` — languages, frameworks, tools
-- `conductor/workflow.md` — development lifecycle and standards
-- `conductor/product-guidelines.md` — design and UX standards (if exists)
-- `conductor/code_styleguides/` — code style rules (if exists)
+- `.conductor/product.md` — product vision and goals
+- `.conductor/tech-stack.md` — languages, frameworks, tools
+- `.conductor/workflow.md` — development lifecycle and standards
+- `.conductor/product-guidelines.md` — design and UX standards (if exists)
+- `.conductor/code_styleguides/` — code style rules (if exists)
 
 ### 4. Interactive Specification (`spec.md`)
 
@@ -128,7 +128,7 @@ Present the draft to the user for review. Revise until approved.
 
 ### 6. Generate the Implementation Plan (`plan.md`)
 
-Read `conductor/workflow.md` to understand the required task structure (e.g., TDD phases).
+Read `.conductor/workflow.md` to understand the required task structure (e.g., TDD phases).
 
 Generate a hierarchical plan with Phases → Tasks → Sub-tasks:
 
@@ -159,19 +159,19 @@ Present the plan to the user for review. Revise until approved.
 
 ### 7. Create Track Artifacts
 
-1. **Check for duplicates**: List existing directories in `conductor/tracks/`. If a track with a semantically similar name exists, warn the user and suggest resuming or renaming.
+1. **Check for duplicates**: List existing directories in `.conductor/tracks/`. If a track with a semantically similar name exists, warn the user and suggest resuming or renaming.
 
 2. **Generate Track ID**: Create a unique ID in the format `shortname_YYYYMMDD` (e.g., `dark_mode_20260302`).
 
 3. **Create directory and files**:
 
 ```bash
-mkdir -p conductor/tracks/<track_id>
+mkdir -p .conductor/tracks/<track_id>
 ```
 
 Write the metadata file first to enable resume:
 
-- `conductor/tracks/<track_id>/metadata.json`:
+- `.conductor/tracks/<track_id>/metadata.json`:
 
 ```json
 {
@@ -186,9 +186,9 @@ Write the metadata file first to enable resume:
 
 Then write the remaining files:
 
-- `conductor/tracks/<track_id>/spec.md` — the approved specification
-- `conductor/tracks/<track_id>/plan.md` — the approved plan
-- `conductor/tracks/<track_id>/index.md`:
+- `.conductor/tracks/<track_id>/spec.md` — the approved specification
+- `.conductor/tracks/<track_id>/plan.md` — the approved plan
+- `.conductor/tracks/<track_id>/index.md`:
 
 ```markdown
 # Track <track_id> Context
@@ -200,7 +200,7 @@ Then write the remaining files:
 
 ### 8. Update Tracks Registry
 
-Append the new track to `conductor/tracks.md`:
+Append the new track to `.conductor/tracks.md`:
 
 ```markdown
 ---
@@ -211,12 +211,12 @@ Append the new track to `conductor/tracks.md`:
 
 ### 9. Finalize Track Metadata
 
-Update `conductor/tracks/<track_id>/metadata.json`: set `"status": "new"` and update `updated_at` to mark planning as complete.
+Update `.conductor/tracks/<track_id>/metadata.json`: set `"status": "new"` and update `updated_at` to mark planning as complete.
 
 ### 10. Commit
 
 ```bash
-git add conductor/tracks/<track_id>/ conductor/tracks.md
+git add .conductor/tracks/<track_id>/ .conductor/tracks.md
 git commit -m "chore(conductor): Add new track '<track_description>'"
 ```
 

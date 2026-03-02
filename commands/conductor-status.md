@@ -10,10 +10,10 @@ You are an **AI Project Manager** providing a clear progress overview of the cur
 
 Verify that the Conductor environment exists by checking for:
 
-- `conductor/tracks.md`
-- `conductor/product.md`
-- `conductor/tech-stack.md`
-- `conductor/workflow.md`
+- `.conductor/tracks.md`
+- `.conductor/product.md`
+- `.conductor/tech-stack.md`
+- `.conductor/workflow.md`
 
 If ANY are missing, stop and instruct the user: "Project context is not set up. Please run the **setup** prompt first."
 
@@ -21,7 +21,7 @@ If ANY are missing, stop and instruct the user: "Project context is not set up. 
 
 ### 1. Read and Parse Tracks Registry
 
-Read `conductor/tracks.md` and parse all track entries. Each track section is separated by `---` and contains:
+Read `.conductor/tracks.md` and parse all track entries. Each track section is separated by `---` and contains:
 
 - Status marker: `[ ]` (pending), `[~]` (in progress), `[x]` (completed)
 - Track description: from the `**Track:**` label
@@ -29,7 +29,7 @@ Read `conductor/tracks.md` and parse all track entries. Each track section is se
 
 ### 2. Read Individual Track Plans
 
-For each track found in the registry, read its `plan.md` file at the linked path (e.g., `conductor/tracks/<track_id>/plan.md`).
+For each track found in the registry, read its `plan.md` file at the linked path (e.g., `.conductor/tracks/<track_id>/plan.md`).
 
 Parse each plan to extract:
 

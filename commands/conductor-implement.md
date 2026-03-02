@@ -10,10 +10,10 @@ You are an **AI Implementation Agent** executing tasks from a structured impleme
 
 Verify that the Conductor environment exists by checking for:
 
-- `conductor/product.md`
-- `conductor/tech-stack.md`
-- `conductor/workflow.md`
-- `conductor/tracks.md`
+- `.conductor/product.md`
+- `.conductor/tech-stack.md`
+- `.conductor/workflow.md`
+- `.conductor/tracks.md`
 
 If ANY are missing, stop and instruct the user: "Project context is not set up. Please run the **setup** prompt first."
 
@@ -23,7 +23,7 @@ If ANY are missing, stop and instruct the user: "Project context is not set up. 
 
 Before selecting a track, detect any interrupted implementation sessions:
 
-1. **Parse `conductor/tracks.md`**: Look for any track marked `[~]` (in progress).
+1. **Parse `.conductor/tracks.md`**: Look for any track marked `[~]` (in progress).
 2. **If an in-progress track is found**:
    - Read its `plan.md` and find the task marked `[~]` (in progress).
    - Announce: "I found an interrupted session. Track '<track_name>' was in progress, with task '<task_name>' partially completed."
@@ -39,9 +39,9 @@ Before selecting a track, detect any interrupted implementation sessions:
 
 ### 1. Select Track
 
-1. **If the user specified a track name**: Match it (case-insensitive) against track descriptions in `conductor/tracks.md`. Confirm the match with the user.
+1. **If the user specified a track name**: Match it (case-insensitive) against track descriptions in `.conductor/tracks.md`. Confirm the match with the user.
 
-2. **If no track was specified**: Parse `conductor/tracks.md` and find:
+2. **If no track was specified**: Parse `.conductor/tracks.md` and find:
    - First, any track marked `[~]` (in progress) — offer to resume it.
    - Otherwise, the first track marked `[ ]` (pending) — offer to start it.
    - If all tracks are `[x]` (completed): announce "All tracks are complete!" and stop.
@@ -55,7 +55,7 @@ Confirm the selected track with the user before proceeding.
 
 ### 2. Mark Track In Progress
 
-Update the track's status in `conductor/tracks.md` from `[ ]` to `[~]`:
+Update the track's status in `.conductor/tracks.md` from `[ ]` to `[~]`:
 
 ```markdown
 - [~] **Track: <Track Description>**
@@ -65,10 +65,10 @@ Update the track's status in `conductor/tracks.md` from `[ ]` to `[~]`:
 
 Read these files:
 
-- `conductor/tracks/<track_id>/spec.md` — what to build
-- `conductor/tracks/<track_id>/plan.md` — how to build it
-- `conductor/tracks/<track_id>/metadata.json` — track metadata
-- `conductor/workflow.md` — the development lifecycle to follow
+- `.conductor/tracks/<track_id>/spec.md` — what to build
+- `.conductor/tracks/<track_id>/plan.md` — how to build it
+- `.conductor/tracks/<track_id>/metadata.json` — track metadata
+- `.conductor/workflow.md` — the development lifecycle to follow
 
 Announce which track you are implementing.
 
@@ -86,7 +86,7 @@ Update `plan.md`: change `[ ]` to `[~]` for the current task.
 
 #### 4b. Follow the Workflow
 
-The `conductor/workflow.md` file is the **single source of truth** for how to execute each task. Follow its defined lifecycle precisely.
+The `.conductor/workflow.md` file is the **single source of truth** for how to execute each task. Follow its defined lifecycle precisely.
 
 **If the workflow specifies TDD (default)**:
 
@@ -116,11 +116,11 @@ The `conductor/workflow.md` file is the **single source of truth** for how to ex
 
 #### 4c. Handle Tech Stack Deviations
 
-If implementation requires a technology not in `conductor/tech-stack.md`:
+If implementation requires a technology not in `.conductor/tech-stack.md`:
 
 1. **STOP** implementation
 2. Inform the user of the deviation
-3. Update `conductor/tech-stack.md` with the new technology and rationale
+3. Update `.conductor/tech-stack.md` with the new technology and rationale
 4. Resume implementation
 
 #### 4d. Commit Code Changes
@@ -146,7 +146,7 @@ Types: `feat`, `fix`, `refactor`, `test`, `chore`, `docs`, `style`
 2. **Commit plan update**:
 
 ```bash
-git add conductor/tracks/<track_id>/plan.md
+git add .conductor/tracks/<track_id>/plan.md
 git commit -m "conductor(plan): Mark task '<task_name>' as complete"
 ```
 <!-- markdownlint-enable MD029 -->
@@ -186,7 +186,7 @@ git commit -m "conductor(checkpoint): Checkpoint end of Phase <N> — '<Phase Na
 6. **Commit plan update**:
 
 ```bash
-git add conductor/tracks/<track_id>/plan.md
+git add .conductor/tracks/<track_id>/plan.md
 git commit -m "conductor(plan): Mark phase '<Phase Name>' as complete"
 ```
 <!-- markdownlint-enable MD029 -->
@@ -207,7 +207,7 @@ After ALL tasks and phases are complete:
 3. **Commit**:
 
 ```bash
-git add conductor/tracks.md conductor/tracks/<track_id>/metadata.json
+git add .conductor/tracks.md .conductor/tracks/<track_id>/metadata.json
 git commit -m "chore(conductor): Mark track '<track_description>' as complete"
 ```
 <!-- markdownlint-enable MD029 -->
@@ -217,14 +217,14 @@ git commit -m "chore(conductor): Mark track '<track_description>' as complete"
 After track completion, check if project docs need updating:
 
 1. **Read the spec**: Analyze `spec.md` for features or changes that impact the product description.
-2. **Update `conductor/product.md`**: If the track significantly changes what the product does, propose updates. Show the diff to the user for approval.
-3. **Update `conductor/tech-stack.md`**: If new technologies were introduced, propose updates with user approval.
-4. **Update `conductor/product-guidelines.md`**: Only if the track explicitly involved branding/UX strategy changes. This file should rarely change.
+2. **Update `.conductor/product.md`**: If the track significantly changes what the product does, propose updates. Show the diff to the user for approval.
+3. **Update `.conductor/tech-stack.md`**: If new technologies were introduced, propose updates with user approval.
+4. **Update `.conductor/product-guidelines.md`**: Only if the track explicitly involved branding/UX strategy changes. This file should rarely change.
 
 If any files were updated:
 
 ```bash
-git add conductor/product.md conductor/tech-stack.md conductor/product-guidelines.md
+git add .conductor/product.md .conductor/tech-stack.md .conductor/product-guidelines.md
 git commit -m "docs(conductor): Synchronize docs for track '<track_description>'"
 ```
 
@@ -233,7 +233,7 @@ git commit -m "docs(conductor): Synchronize docs for track '<track_description>'
 Offer the user a choice:
 
 - **Review**: "Run the **review** prompt to verify changes before finalizing."
-- **Archive**: Move `conductor/tracks/<track_id>/` to `conductor/archive/<track_id>/` and remove from `tracks.md`.
+- **Archive**: Move `.conductor/tracks/<track_id>/` to `.conductor/archive/<track_id>/` and remove from `tracks.md`.
 - **Delete**: Permanently delete the track folder (require explicit confirmation for this destructive action).
 - **Skip**: Leave the track in `tracks.md` as completed.
 
