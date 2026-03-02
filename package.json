@@ -6,7 +6,10 @@
     "url": "https://github.com/kurokeita/conductor-for-all"
   },
   "license": "GPL-3.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Universal Conductor prompts for AI coding agents",
   "type": "module",
   "bin": {
