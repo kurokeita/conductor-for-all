@@ -10,9 +10,9 @@
 
 ## Phase 2: Prompt Templates Update
 
-- [ ] Task: Update `commands/*.md`
-  - [ ] Add "Network of Agents" section to `conductor-setup.md`, `conductor-planning.md`, `conductor-implement.md`, `conductor-review.md`, and `conductor-status.md`.
-  - [ ] **Verify**: Check file content.
+- [x] Task: Update `commands/*.md` d1d6062
+  - [x] Add "Network of Agents" section to `conductor-setup.md`, `conductor-planning.md`, `conductor-implement.md`, `conductor-review.md`, and `conductor-status.md`.
+  - [x] **Verify**: Check file content.
 
 ## Phase 3: Installer Logic Refinement
 
