@@ -7,7 +7,7 @@ export const PLATFORMS: Record<string, Platform> = {
 		label: "Antigravity",
 		workflowsPath: "~/.gemini/antigravity/global_workflows",
 	},
-	copilot: {
+	copilotAgents: {
 		label: "GitHub Copilot Agents (IDE)",
 		workflowsPath: ".github/agents",
 		transformContent: injectCopilotFrontmatter,
@@ -17,12 +17,12 @@ export const PLATFORMS: Record<string, Platform> = {
 		workflowsPath: ".github/prompts",
 		transformName: (name) => name.replace(/\.md$/, ".prompt.md"),
 	},
-	copilotCli: {
+	copilotCliAgents: {
 		label: "GitHub Copilot CLI Agents",
 		workflowsPath: "~/.copilot/agents",
 		transformContent: injectCopilotFrontmatter,
 	},
-	copilotSkills: {
+	copilotCliSkills: {
 		label: "GitHub Copilot CLI Skills",
 		workflowsPath: "~/.copilot/skills",
 		transformName: (name) => `${name.replace(/\.md$/, "")}/SKILL.md`,
