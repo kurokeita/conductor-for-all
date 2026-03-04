@@ -8,9 +8,9 @@
 
 ## Installation & Maintenance
 
-- `pnpm dlx conductor-for-all --all`: Install prompts for all supported platforms.
-- `pnpm dlx conductor-for-all --platform <platform>`: Install for specific platforms (e.g., `copilot`, `gemini`).
-- `pnpm dlx conductor-for-all --uninstall`: Remove installed prompts.
+- `pnpx conductor-for-all --all`: Install prompts for all supported platforms.
+- `pnpx conductor-for-all --platform <platform>`: Install for specific platforms (e.g., `copilot`, `gemini`).
+- `pnpx conductor-for-all --uninstall`: Remove installed prompts.
 
 ## Git & Workflow
 

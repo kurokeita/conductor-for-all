@@ -35,9 +35,9 @@ The project consists of two main parts:
 
 ### Installation
 
-- **Install to all platforms:** `pnpm dlx conductor-for-all --all`
-- **Install to specific platform:** `pnpm dlx conductor-for-all --platform copilot`
-- **Uninstall:** `pnpm dlx conductor-for-all --uninstall`
+- **Install to all platforms:** `pnpx conductor-for-all --all`
+- **Install to specific platform:** `pnpx conductor-for-all --platform copilot`
+- **Uninstall:** `pnpx conductor-for-all --uninstall`
 
 ## Development Conventions
 

@@ -3,18 +3,20 @@
 	"author": "Minh Le",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kurokeita/conductor-for-all"
+		"url": "git+https://github.com/kurokeita/conductor-for-all.git"
 	},
 	"license": "GPL-3.0",
 	"version": "1.1.0",
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"description": "Universal Conductor prompts for AI coding agents",
 	"type": "module",
 	"bin": {
-		"conductor-install": "./dist/install.js"
+		"conductor-install": "dist/install.js"
 	},
+	"main": "dist/install.js",
 	"scripts": {
 		"dev": "tsx bin/install.ts",
 		"build": "tsup",
