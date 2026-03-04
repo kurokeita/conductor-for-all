@@ -42,6 +42,6 @@
   - [x] Run `pnpm dev -- --platform gemini` and inspect the destination `~/.gemini/commands/conductor`
   - [x] Verify `setup.toml`, `planning.toml`, etc. are created (without `conductor-` prefix)
   - [x] Verify the files contain valid TOML with `description` and `prompt` strings
-- [ ] Task: Smoke test — unaffected platforms
-  - [ ] Run `pnpm dev -- --platform antigravity` and confirm installed file is byte-for-byte identical to source
-- [ ] Task: Manual Verification — 'Phase 2'
+- [x] Task: Smoke test — unaffected platforms
+  - [x] Run `pnpm dev -- --platform antigravity` and confirm installed file is byte-for-byte identical to source
+- [x] Task: Manual Verification — 'Phase 2'
