@@ -275,6 +275,7 @@ const program = new Command()
 program
 	.name("conductor-install")
 	.description("Install Conductor prompts to AI agent platforms")
+	.version(version, "-v, --version")
 	.option(
 		"-p, --platform <names>",
 		"comma-separated platform(s): antigravity, copilotCli, copilot, windsurf",

@@ -11,9 +11,9 @@
     - [x] **Implement**: Add logic to `bin/install.ts` to import or read the version.
 
 ## Phase 2: CLI Integration
-- [ ] Task: Configure Commander Version
-    - [ ] **Implement**: Call `.version()` on the `commander` instance with the extracted version and support for `-v, --version`.
-    - [ ] **Verify**: Run `pnpm dev -- --version` and `pnpm dev -- --help`.
+- [x] Task: Configure Commander Version
+    - [x] **Implement**: Call `.version()` on the `commander` instance with the extracted version and support for `-v, --version`.
+    - [x] **Verify**: Run `pnpm dev -- --version` and `pnpm dev -- --help`.
 - [ ] Task: Display Version in Interactive Mode
     - [ ] **Implement**: Update the `p.intro()` or initial header in `bin/install.ts` to include a small footer with the version number using `pc.dim()`.
     - [ ] **Verify**: Run `pnpm dev` and check the initial UI.
