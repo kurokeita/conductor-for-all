@@ -6,9 +6,9 @@
 - [x] Task: Create Test Suite for Version Display
     - [x] **Write Tests**: Create `test/version.test.ts` (or equivalent) to verify `-v/--version` and help output.
     - [x] **CRITICAL**: Run tests and confirm they fail.
-- [ ] Task: Update `bin/install.ts` to Import Version
-    - [ ] Read `package.json` to extract the version string dynamically.
-    - [ ] **Implement**: Add logic to `bin/install.ts` to import or read the version.
+- [x] Task: Update `bin/install.ts` to Import Version
+    - [x] Read `package.json` to extract the version string dynamically.
+    - [x] **Implement**: Add logic to `bin/install.ts` to import or read the version.
 
 ## Phase 2: CLI Integration
 - [ ] Task: Configure Commander Version

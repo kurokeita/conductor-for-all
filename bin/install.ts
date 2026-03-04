@@ -9,6 +9,16 @@ import pc from "picocolors"
 import { injectCopilotFrontmatter } from "./platforms/copilot.js"
 import { convertToGeminiToml } from "./platforms/gemini.js"
 
+// ── Version ──────────────────────────────────────────────────────────────────
+
+const pkg = JSON.parse(
+	fs.readFileSync(
+		new URL("../package.json", import.meta.url).pathname,
+		"utf-8",
+	),
+)
+const version = pkg.version
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 interface Platform {
