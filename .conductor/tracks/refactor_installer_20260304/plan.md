@@ -13,9 +13,9 @@
 - [x] Task: Extract Platform Definitions
   - [x] **Implement**: Create `bin/platforms/index.ts`.
   - [x] **Verify**: All platforms are correctly mapped.
-- [ ] Task: Extract Actions
-  - [ ] **Implement**: Create `bin/actions.ts` containing `runInteractive` and `execute`.
-  - [ ] **Verify**: Actions are correctly exported.
+- [x] Task: Extract Actions
+  - [x] **Implement**: Create `bin/actions.ts` containing `runInteractive` and `execute`.
+  - [x] **Verify**: Actions are correctly exported.
 
 ## Phase 2: Integration and Cleanup
 
