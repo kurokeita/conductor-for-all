@@ -2,7 +2,7 @@
  * @type {import('semantic-release').GlobalConfig}
  */
 module.exports = {
-	branches: ["main"],
+	branches: ["main", "feat/attempt-to-fix-release"],
 	repositoryUrl: "https://github.com/kurokeita/conductor-for-all.git",
 	plugins: [
 		"@semantic-release/commit-analyzer",
