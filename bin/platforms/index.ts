@@ -8,12 +8,12 @@ export const PLATFORMS: Record<string, Platform> = {
 		workflowsPath: "~/.gemini/antigravity/global_workflows",
 	},
 	copilotAgents: {
-		label: "GitHub Copilot Agents (IDE)",
+		label: "GitHub Copilot IDE Agents",
 		workflowsPath: ".github/agents",
 		transformContent: injectCopilotFrontmatter,
 	},
 	copilotPrompts: {
-		label: "GitHub Copilot Prompts (IDE)",
+		label: "GitHub Copilot IDE Prompts",
 		workflowsPath: ".github/prompts",
 		transformName: (name) => name.replace(/\.md$/, ".prompt.md"),
 	},
