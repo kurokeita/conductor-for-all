@@ -87,20 +87,20 @@ A built-in CLI syncs all prompts to the right location for each platform.
 
 ```bash
 # Install to all platforms
-pnpm dlx conductor-for-all --all
+pnpx conductor-for-all --all
 
 # Install to specific platform(s)
-pnpm dlx conductor-for-all --platform copilot
-pnpm dlx conductor-for-all --platform copilot,antigravity
+pnpx conductor-for-all --platform copilot
+pnpx conductor-for-all --platform copilot,antigravity
 
 # Preview without writing anything
-pnpm dlx conductor-for-all --platform copilot --dry-run
+pnpx conductor-for-all --platform copilot --dry-run
 
 # Remove installed prompts
-pnpm dlx conductor-for-all --platform copilot --uninstall
+pnpx conductor-for-all --platform copilot --uninstall
 
 # Interactive mode (no flags)
-pnpm dlx conductor-for-all
+pnpx conductor-for-all
 ```
 
 > Works with any package manager: `npx conductor-for-all`, `bunx conductor-for-all`
@@ -139,10 +139,6 @@ After running `conductor-for-all --platform copilot`, prompts are installed to `
 ### Windsurf
 
 Copy or symlink the prompt files into your Windsurf configuration, or paste the prompt content directly into a conversation.
-
-### Cursor
-
-Reference the prompt files directly or add them to your `.cursor/rules/` directory.
 
 ### Any Other Agent
 
