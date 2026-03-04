@@ -22,7 +22,7 @@
 - [x] Task: Refactor & Quality Gate
     - [x] Ensure `pnpm build` succeeds.
     - [x] Check linting with `pnpm run lint`.
-- [ ] Task: Manual Verification — 'Display Version in CLI'
-    - [ ] Verify `-v` flag output.
-    - [ ] Verify `--version` flag output.
-    - [ ] Verify version footer in interactive mode.
+- [x] Task: Manual Verification — 'Display Version in CLI'
+    - [x] Verify `-v` flag output.
+    - [x] Verify `--version` flag output.
+    - [x] Verify version footer in interactive mode.
