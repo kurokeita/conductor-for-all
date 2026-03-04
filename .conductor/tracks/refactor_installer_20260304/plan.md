@@ -6,9 +6,9 @@
 - [x] Task: Extract Types and Version
     - [x] **Implement**: Create `bin/types.ts` and `bin/version.ts`.
     - [x] **Verify**: Types are correctly exported.
-- [ ] Task: Extract Utils and File Ops
-    - [ ] **Implement**: Create `bin/utils.ts` and `bin/file-ops.ts`.
-    - [ ] **Verify**: Logic matches the original implementation.
+- [x] Task: Extract Utils and File Ops
+    - [x] **Implement**: Create `bin/utils.ts` and `bin/file-ops.ts`.
+    - [x] **Verify**: Logic matches the original implementation.
 - [ ] Task: Extract Platform Definitions
     - [ ] **Implement**: Create `bin/platforms/index.ts`.
     - [ ] **Verify**: All platforms are correctly mapped.
