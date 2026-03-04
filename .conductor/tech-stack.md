@@ -26,6 +26,16 @@
 - Binary entry: `conductor-install` → `./dist/install.js`
 - Distributed files: `dist/`, `commands/`
 
+## Supported Platforms
+
+- **Antigravity**: global workflows (`~/.gemini/antigravity/global_workflows`)
+- **GitHub Copilot Agents (IDE)**: local agents (`.github/agents`)
+- **GitHub Copilot Prompts (IDE)**: local prompts (`.github/prompts/*.prompt.md`)
+- **GitHub Copilot CLI Agents**: global agents (`~/.copilot/agents`)
+- **GitHub Copilot CLI Skills**: global skills (`~/.copilot/skills/<name>/SKILL.md`)
+- **Gemini CLI**: global commands (`~/.gemini/commands/conductor` as `.toml`)
+- **Windsurf**: global workflows (`~/.codeium/windsurf/global_workflows`)
+
 ## Repository
 
 - GitHub: `kurokeita/conductor-for-all`

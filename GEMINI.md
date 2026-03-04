@@ -30,13 +30,13 @@ The project consists of two main parts:
 ### Development
 
 - **Run Interactive Installer:** `pnpm dev`
-- **Run with Flags:** `pnpm dev -- --platform copilot --dry-run`
+- **Run with Flags:** `pnpm dev -- --platform copilotAgents --dry-run`
 - **Build Project:** `pnpm build`
 
 ### Installation
 
 - **Install to all platforms:** `pnpx conductor-for-all --all`
-- **Install to specific platform:** `pnpx conductor-for-all --platform copilot`
+- **Install to specific platform:** `pnpx conductor-for-all --platform copilotAgents`
 - **Uninstall:** `pnpx conductor-for-all --uninstall`
 
 ## Development Conventions

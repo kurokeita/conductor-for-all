@@ -3,13 +3,13 @@
 ## Development
 
 - `pnpm dev`: Run the installer in interactive mode (using `tsx`).
-- `pnpm dev -- --platform copilot --dry-run`: Run with flags for testing without side effects.
+- `pnpm dev -- --platform copilotAgents --dry-run`: Run with flags for testing without side effects.
 - `pnpm build`: Compile the TypeScript source code to `dist/` using `tsup`.
 
 ## Installation & Maintenance
 
 - `pnpx conductor-for-all --all`: Install prompts for all supported platforms.
-- `pnpx conductor-for-all --platform <platform>`: Install for specific platforms (e.g., `copilot`, `gemini`).
+- `pnpx conductor-for-all --platform <platform>`: Install for specific platforms (e.g., `copilotAgents`, `gemini`).
 - `pnpx conductor-for-all --uninstall`: Remove installed prompts.
 
 ## Git & Workflow

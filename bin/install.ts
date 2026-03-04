@@ -17,7 +17,7 @@ program
 	.version(version, "-v, --version")
 	.option(
 		"-p, --platform <names>",
-		"comma-separated platform(s): antigravity, copilotCli, copilot, windsurf",
+		`comma-separated platform(s): ${PLATFORM_KEYS.join(", ")}`,
 	)
 	.option("-n, --dry-run", "preview changes without writing")
 	.option("-u, --uninstall", "remove installed prompts")
