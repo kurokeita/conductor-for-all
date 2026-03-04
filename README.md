@@ -108,8 +108,9 @@ pnpm dlx conductor-for-all
 | Platform | Prompts installed to |
 | :--- | :--- |
 | `antigravity` | `~/.gemini/antigravity/global_workflows` |
-| `copilot` | `.github/prompts` |
-| `copilot CLI` | `~/.copilot/skills` |
+| `copilot` | `.github/agents` |
+| `copilot CLI` | `~/.copilot/agents` |
+| `gemini` | `~/.gemini/commands/conductor` (as `.toml`) |
 | `windsurf` | `~/.codeium/windsurf/global_workflows` |
 
 Or clone and run locally:

@@ -12,6 +12,7 @@ interface Platform {
   label: string
   workflowsPath: string
   transformName?: (name: string) => string
+  transformContent?: (name: string, content: string) => string
 }
 
 interface PromptFile {
@@ -33,13 +34,19 @@ const PLATFORMS: Record<string, Platform> = {
   },
   copilot: {
     label: "GitHub Copilot",
-    workflowsPath: ".github/prompts",
-    transformName: (name) => name.replace(/\.md$/, ".prompt.md"),
+    workflowsPath: "~/.github/agents",
+    transformContent: injectCopilotFrontmatter,
   },
   copilotCli: {
     label: "GitHub Copilot CLI",
-    workflowsPath: "~/.copilot/skills",
-    transformName: (name) => name.replace(/\.md$/, "/SKILL.md"),
+    workflowsPath: "~/.copilot/agents",
+    transformContent: injectCopilotFrontmatter,
+  },
+  gemini: {
+    label: "Gemini CLI",
+    workflowsPath: "~/.gemini/commands/conductor",
+    transformName: (name) => name.replace(/^conductor-/, "").replace(/\.md$/, ".toml"),
+    transformContent: convertToGeminiToml,
   },
   windsurf: {
     label: "Windsurf",
@@ -54,6 +61,83 @@ const PLATFORM_KEYS = Object.keys(PLATFORMS)
 const home = os.homedir()
 const expandHome = (p: string) => p.replace(/^~/, home)
 const shortenHome = (p: string) => p.replace(home, "~")
+
+/**
+ * Injects `name:` and `description:` fields into the file's YAML frontmatter, derived from the
+ * source filename stem and an optional description field. Used to produce the custom agent format required by
+ * GitHub Copilot (IDE) and GitHub Copilot CLI.
+ */
+function injectCopilotFrontmatter(srcName: string, content: string): string {
+  const stem = srcName.replace(/\.md$/, "")
+  const hasFrontmatter = content.startsWith("---\n")
+
+  if (hasFrontmatter) {
+    const blockEnd = content.indexOf("\n---", 4)
+    const block = content.slice(4, blockEnd)
+
+    // Check for existing fields
+    const hasName = /^name:/m.test(block)
+    const hasDescription = /^description:/m.test(block)
+
+    if (hasName && hasDescription) return content
+
+    // Inject missing fields
+    let newBlock = block
+    if (!hasName) newBlock = `name: ${stem}\n${newBlock}`
+
+    // Attempt to extract description if not present and if there's any description logic we want, 
+    // but the spec just says to add name and description. If we don't have a description, we can default it or parse it.
+    // For now we'll just inject empty or generic description if it's not present, or try to find it.
+    if (!hasDescription) {
+      newBlock = `${newBlock}\ndescription: "Conductor ${stem.replace('conductor-', '')} workflow"`
+    }
+
+    return `---\n${newBlock}\n${content.slice(blockEnd)}`
+  }
+
+  return `---\nname: ${stem}\ndescription: "Conductor ${stem.replace('conductor-', '')} workflow"\n---\n\n${content}`
+}
+
+/**
+ * Converts a markdown file with optional YAML frontmatter to a TOML file
+ * intended for Gemini CLI, containing `description` and `prompt`.
+ */
+function convertToGeminiToml(srcName: string, content: string): string {
+  let description = "Conductor command"
+  let promptContent = content
+
+  // Extract description from frontmatter if present
+  if (content.startsWith("---\n")) {
+    const blockEnd = content.indexOf("\n---", 4)
+    if (blockEnd !== -1) {
+      const block = content.slice(4, blockEnd)
+      const descMatch = block.match(/^description:\s*(.*)$/m)
+      if (descMatch) {
+        // strip quotes
+        description = descMatch[1].replace(/^["'](.*)["']$/, '$1')
+      }
+      promptContent = content.slice(blockEnd + 5).trimStart()
+    }
+  }
+
+  // Construct valid TOML
+  // We need to safely encode the multi-line string.
+  // Using TOML multi-line literal strings: '''
+  // If the prompt contains ''', we would need to escape it, but literal strings don't support escaping.
+  // Instead, we use multi-line basic strings """ and escape \ and " properly if needed.
+  // But a simple JSON.stringify is technically valid TOML for basic strings anyway if it spans one line, 
+  // but it's cleaner to use multi-line.
+
+  // Cleanest valid TOML for multi-line is to use literal string `'''` and replace `'''` if it ever exists.
+  let safePrompt = promptContent.replace(/'''/g, "''\\'")
+
+  const toml = `description = ${JSON.stringify(description)}
+prompt = '''
+${promptContent}
+'''
+`
+  return toml
+}
 
 function getCommandsDir(): string {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -75,12 +159,23 @@ function getPromptFiles(dir: string): PromptFile[] {
     .map((f) => ({ name: f, src: path.join(dir, f) }))
 }
 
-function copyFile(file: PromptFile, dest: string, dryRun: boolean, destName = file.name): string {
+function copyFile(
+  file: PromptFile,
+  dest: string,
+  dryRun: boolean,
+  destName = file.name,
+  transformContent?: (name: string, content: string) => string,
+): string {
   const destFile = path.join(dest, destName)
   if (!dryRun) {
     fs.mkdirSync(path.dirname(destFile), { recursive: true })
     try { fs.rmSync(destFile) } catch { /* doesn't exist */ }
-    fs.copyFileSync(file.src, destFile)
+    if (transformContent) {
+      const content = fs.readFileSync(file.src, "utf8")
+      fs.writeFileSync(destFile, transformContent(file.name, content), "utf8")
+    } else {
+      fs.copyFileSync(file.src, destFile)
+    }
   }
   return shortenHome(destFile)
 }
@@ -104,7 +199,7 @@ async function runInteractive(files: PromptFile[]): Promise<void> {
   const action = await p.select({
     message: "What do you want to do?",
     options: [
-      { value: "install",   label: "Install prompts" },
+      { value: "install", label: "Install prompts" },
       { value: "uninstall", label: "Uninstall prompts" },
     ],
     initialValue: "install",
@@ -176,7 +271,7 @@ async function execute(files: PromptFile[], platformKeys: string[], opts: ExecOp
     } else {
       for (const file of files) {
         const destName = platform.transformName ? platform.transformName(file.name) : file.name
-        const fp = copyFile(file, dest, dryRun, destName)
+        const fp = copyFile(file, dest, dryRun, destName, platform.transformContent)
         const action = dryRun ? pc.dim("[dry-run]") : pc.green("copied ")
         results.push(`  ${action}  ${pc.dim(fp)}`)
         totalCount++
@@ -201,9 +296,9 @@ program
   .name("conductor-install")
   .description("Install Conductor prompts to AI agent platforms")
   .option("-p, --platform <names>", "comma-separated platform(s): antigravity, copilotCli, copilot, windsurf")
-  .option("-n, --dry-run",   "preview changes without writing")
+  .option("-n, --dry-run", "preview changes without writing")
   .option("-u, --uninstall", "remove installed prompts")
-  .option("--all",           "install to all platforms")
+  .option("--all", "install to all platforms")
   .action(async (opts) => {
     const commandsDir = getCommandsDir()
     const files = getPromptFiles(commandsDir)
