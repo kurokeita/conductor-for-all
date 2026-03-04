@@ -20,7 +20,11 @@
     "build": "tsup",
     "prepublishOnly": "tsup",
     "install-prompts": "node dist/install.js",
-    "uninstall-prompts": "node dist/install.js --uninstall"
+    "uninstall-prompts": "node dist/install.js --uninstall",
+    "lint": "pnpm run lint:ts && pnpm run lint:md '**/*.md'",
+    "lint:ts": "biome check --error-on-warnings .",
+    "lint:md": "markdownlint --ignore node_modules '**/*.md'",
+    "format": "biome check --write . && pnpm run lint:md --fix"
   },
   "files": [
     "dist/",
@@ -36,7 +40,9 @@
     "copilot",
     "windsurf",
     "ai",
-    "prompts"
+    "prompts",
+    "custom-agents",
+    "commands"
   ],
   "dependencies": {
     "@clack/prompts": "^1.0.1",
@@ -44,7 +50,9 @@
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.5",
     "@types/node": "^25.3.3",
+    "markdownlint-cli": "^0.48.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"

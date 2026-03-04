@@ -159,6 +159,12 @@ pnpm dev -- --platform copilot --dry-run
 
 # Build dist/
 pnpm build
+
+# Lint and format check
+pnpm run lint
+
+# Auto-fix formatting
+pnpm run format
 ```
 
 ### Testing
