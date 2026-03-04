@@ -3,9 +3,9 @@
 ## Phase 1: Foundation & Version Extraction
 - [x] Task: Project Activation
     - [ ] Run `mcp_serena_activate_project`
-- [ ] Task: Create Test Suite for Version Display
-    - [ ] **Write Tests**: Create `test/version.test.ts` (or equivalent) to verify `-v/--version` and help output.
-    - [ ] **CRITICAL**: Run tests and confirm they fail.
+- [x] Task: Create Test Suite for Version Display
+    - [x] **Write Tests**: Create `test/version.test.ts` (or equivalent) to verify `-v/--version` and help output.
+    - [x] **CRITICAL**: Run tests and confirm they fail.
 - [ ] Task: Update `bin/install.ts` to Import Version
     - [ ] Read `package.json` to extract the version string dynamically.
     - [ ] **Implement**: Add logic to `bin/install.ts` to import or read the version.
