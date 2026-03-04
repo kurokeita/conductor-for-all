@@ -1,7 +1,7 @@
 # Implementation Plan: Refactor Installer CLI
 
 ## Phase 1: Modularization
-- [ ] Task: Project Activation
+- [x] Task: Project Activation
     - [ ] Run `mcp_serena_activate_project`
 - [ ] Task: Extract Types and Version
     - [ ] **Implement**: Create `bin/types.ts` and `bin/version.ts`.
