@@ -11,5 +11,9 @@ Each track has its own detailed plan in its respective folder.
 ---
 
 - [x] **Track: Display Version in CLI**
-  *Link: [./tracks/display_version_20260304/](./tracks/display_version_20260304/)*
-\n---\n\n- [x] **Track: Refactor Installer CLI**\n  *Link: [./tracks/refactor_installer_20260304/](./tracks/refactor_installer_20260304/)*
+  *Link: [./archive/display_version_20260304/](./archive/display_version_20260304/)*
+
+---
+
+- [x] **Track: Refactor Installer CLI**
+  *Link: [./archive/refactor_installer_20260304/](./archive/refactor_installer_20260304/)*
