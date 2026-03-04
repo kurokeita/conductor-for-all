@@ -3,9 +3,9 @@
 ## Phase 1: Modularization
 - [x] Task: Project Activation
     - [ ] Run `mcp_serena_activate_project`
-- [ ] Task: Extract Types and Version
-    - [ ] **Implement**: Create `bin/types.ts` and `bin/version.ts`.
-    - [ ] **Verify**: Types are correctly exported.
+- [x] Task: Extract Types and Version
+    - [x] **Implement**: Create `bin/types.ts` and `bin/version.ts`.
+    - [x] **Verify**: Types are correctly exported.
 - [ ] Task: Extract Utils and File Ops
     - [ ] **Implement**: Create `bin/utils.ts` and `bin/file-ops.ts`.
     - [ ] **Verify**: Logic matches the original implementation.
