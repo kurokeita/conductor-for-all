@@ -22,9 +22,9 @@
 
 ## Phase 4: Finalization
 
-- [ ] Task: Quality Gate
-  - [ ] Run `pnpm run lint`.
-  - [ ] Run `pnpm test`.
+- [x] Task: Quality Gate
+  - [x] Run `pnpm run lint`.
+  - [x] Run `pnpm test`.
 - [ ] Task: Manual Verification — 'Enhanced Copilot Integration'
   - [ ] Verify local installs (`.github/agents`, `.github/prompts`).
   - [ ] Verify global install (`~/.copilot/skills`).
