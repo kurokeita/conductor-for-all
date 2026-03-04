@@ -10,5 +10,5 @@ Each track has its own detailed plan in its respective folder.
 
 ---
 
-- [~] **Track: Display Version in CLI**
+- [x] **Track: Display Version in CLI**
   *Link: [./tracks/display_version_20260304/](./tracks/display_version_20260304/)*
