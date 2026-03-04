@@ -25,6 +25,6 @@
 - [x] Task: Quality Gate
   - [x] Run `pnpm run lint`.
   - [x] Run `pnpm test`.
-- [ ] Task: Manual Verification — 'Enhanced Copilot Integration'
-  - [ ] Verify local installs (`.github/agents`, `.github/prompts`).
-  - [ ] Verify global install (`~/.copilot/skills`).
+- [x] Task: Manual Verification — 'Enhanced Copilot Integration'
+  - [x] Verify local installs (`.github/agents`, `.github/prompts`).
+  - [x] Verify global install (`~/.copilot/skills`).
