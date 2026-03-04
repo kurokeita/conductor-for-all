@@ -22,10 +22,10 @@
 - [x] Task: Update Entry Point
   - [x] **Implement**: Refactor `bin/install.ts` to use the new modules.
   - [x] **Verify**: `pnpm build` and `pnpm test` pass.
-- [ ] Task: Manual Verification — 'Refactor Installer CLI'
-  - [ ] Verify `-v/--version`.
-  - [ ] Verify interactive mode.
-  - [ ] Verify non-interactive mode.
+- [x] Task: Manual Verification — 'Refactor Installer CLI'
+  - [x] Verify `-v/--version`.
+  - [x] Verify interactive mode.
+  - [x] Verify non-interactive mode.
 
 ## Phase 3: Finalization
 
