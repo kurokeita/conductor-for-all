@@ -6,12 +6,16 @@ import { Command } from "commander"
 import * as p from "@clack/prompts"
 import pc from "picocolors"
 
+import { injectCopilotFrontmatter } from "./platforms/copilot.js"
+import { convertToGeminiToml } from "./platforms/gemini.js"
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 interface Platform {
   label: string
   workflowsPath: string
   transformName?: (name: string) => string
+  transformContent?: (name: string, content: string) => string
 }
 
 interface PromptFile {
@@ -33,13 +37,19 @@ const PLATFORMS: Record<string, Platform> = {
   },
   copilot: {
     label: "GitHub Copilot",
-    workflowsPath: ".github/prompts",
-    transformName: (name) => name.replace(/\.md$/, ".prompt.md"),
+    workflowsPath: "~/.github/agents",
+    transformContent: injectCopilotFrontmatter,
   },
   copilotCli: {
     label: "GitHub Copilot CLI",
-    workflowsPath: "~/.copilot/skills",
-    transformName: (name) => name.replace(/\.md$/, "/SKILL.md"),
+    workflowsPath: "~/.copilot/agents",
+    transformContent: injectCopilotFrontmatter,
+  },
+  gemini: {
+    label: "Gemini CLI",
+    workflowsPath: "~/.gemini/commands/conductor",
+    transformName: (name) => name.replace(/^conductor-/, "").replace(/\.md$/, ".toml"),
+    transformContent: convertToGeminiToml,
   },
   windsurf: {
     label: "Windsurf",
@@ -54,6 +64,7 @@ const PLATFORM_KEYS = Object.keys(PLATFORMS)
 const home = os.homedir()
 const expandHome = (p: string) => p.replace(/^~/, home)
 const shortenHome = (p: string) => p.replace(home, "~")
+
 
 function getCommandsDir(): string {
   const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -75,12 +86,23 @@ function getPromptFiles(dir: string): PromptFile[] {
     .map((f) => ({ name: f, src: path.join(dir, f) }))
 }
 
-function copyFile(file: PromptFile, dest: string, dryRun: boolean, destName = file.name): string {
+function copyFile(
+  file: PromptFile,
+  dest: string,
+  dryRun: boolean,
+  destName = file.name,
+  transformContent?: (name: string, content: string) => string,
+): string {
   const destFile = path.join(dest, destName)
   if (!dryRun) {
     fs.mkdirSync(path.dirname(destFile), { recursive: true })
     try { fs.rmSync(destFile) } catch { /* doesn't exist */ }
-    fs.copyFileSync(file.src, destFile)
+    if (transformContent) {
+      const content = fs.readFileSync(file.src, "utf8")
+      fs.writeFileSync(destFile, transformContent(file.name, content), "utf8")
+    } else {
+      fs.copyFileSync(file.src, destFile)
+    }
   }
   return shortenHome(destFile)
 }
@@ -104,7 +126,7 @@ async function runInteractive(files: PromptFile[]): Promise<void> {
   const action = await p.select({
     message: "What do you want to do?",
     options: [
-      { value: "install",   label: "Install prompts" },
+      { value: "install", label: "Install prompts" },
       { value: "uninstall", label: "Uninstall prompts" },
     ],
     initialValue: "install",
@@ -176,7 +198,7 @@ async function execute(files: PromptFile[], platformKeys: string[], opts: ExecOp
     } else {
       for (const file of files) {
         const destName = platform.transformName ? platform.transformName(file.name) : file.name
-        const fp = copyFile(file, dest, dryRun, destName)
+        const fp = copyFile(file, dest, dryRun, destName, platform.transformContent)
         const action = dryRun ? pc.dim("[dry-run]") : pc.green("copied ")
         results.push(`  ${action}  ${pc.dim(fp)}`)
         totalCount++
@@ -201,9 +223,9 @@ program
   .name("conductor-install")
   .description("Install Conductor prompts to AI agent platforms")
   .option("-p, --platform <names>", "comma-separated platform(s): antigravity, copilotCli, copilot, windsurf")
-  .option("-n, --dry-run",   "preview changes without writing")
+  .option("-n, --dry-run", "preview changes without writing")
   .option("-u, --uninstall", "remove installed prompts")
-  .option("--all",           "install to all platforms")
+  .option("--all", "install to all platforms")
   .action(async (opts) => {
     const commandsDir = getCommandsDir()
     const files = getPromptFiles(commandsDir)
