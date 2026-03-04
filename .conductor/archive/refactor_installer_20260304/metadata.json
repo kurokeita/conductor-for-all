@@ -1,8 +1,8 @@
 {
-  "track_id": "refactor_installer_20260304",
-  "type": "refactor",
-  "status": "completed",
-  "created_at": "2026-03-04T16:30:00Z",
-  "updated_at": "2026-03-04T16:45:00Z",
-  "description": "refactor the @bin/install.ts, keep this script clean. All the actual logic must be extracted to separate files and be imported into @bin/install.ts to be called"
+	"track_id": "refactor_installer_20260304",
+	"type": "refactor",
+	"status": "completed",
+	"created_at": "2026-03-04T16:30:00Z",
+	"updated_at": "2026-03-04T16:45:00Z",
+	"description": "refactor the @bin/install.ts, keep this script clean. All the actual logic must be extracted to separate files and be imported into @bin/install.ts to be called"
 }
