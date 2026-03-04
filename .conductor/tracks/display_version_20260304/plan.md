@@ -19,9 +19,9 @@
     - [x] **Verify**: Run `pnpm dev` and check the initial UI.
 
 ## Phase 3: Finalization & Verification
-- [ ] Task: Refactor & Quality Gate
-    - [ ] Ensure `pnpm build` succeeds.
-    - [ ] Check linting with `pnpm run lint`.
+- [x] Task: Refactor & Quality Gate
+    - [x] Ensure `pnpm build` succeeds.
+    - [x] Check linting with `pnpm run lint`.
 - [ ] Task: Manual Verification — 'Display Version in CLI'
     - [ ] Verify `-v` flag output.
     - [ ] Verify `--version` flag output.
