@@ -8,9 +8,15 @@ export default defineConfig({
 	bundle: true,
 	splitting: false,
 	clean: true,
-	banner: {
-		js: "#!/usr/bin/env node",
-	},
+	treeshake: true,
 	noExternal: [],
-	external: ["@clack/prompts", "commander", "picocolors"],
+	external: [
+		"@clack/prompts",
+		"commander",
+		"picocolors",
+		"node:fs",
+		"node:os",
+		"node:path",
+		"node:url",
+	],
 })
