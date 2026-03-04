@@ -16,9 +16,9 @@
 
 ## Phase 3: Installer Logic Refinement
 
-- [ ] Task: Subdirectory Handling
-  - [ ] Ensure `copyFile` logic correctly handles the directory-per-skill structure.
-  - [ ] **Verify**: Dry run output looks correct for skills.
+- [x] Task: Subdirectory Handling
+  - [x] Ensure `copyFile` logic correctly handles the directory-per-skill structure.
+  - [x] **Verify**: Dry run output looks correct for skills.
 
 ## Phase 4: Finalization
 
