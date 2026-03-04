@@ -19,9 +19,9 @@
 
 ## Phase 2: Integration and Cleanup
 
-- [ ] Task: Update Entry Point
-  - [ ] **Implement**: Refactor `bin/install.ts` to use the new modules.
-  - [ ] **Verify**: `pnpm build` and `pnpm test` pass.
+- [x] Task: Update Entry Point
+  - [x] **Implement**: Refactor `bin/install.ts` to use the new modules.
+  - [x] **Verify**: `pnpm build` and `pnpm test` pass.
 - [ ] Task: Manual Verification — 'Refactor Installer CLI'
   - [ ] Verify `-v/--version`.
   - [ ] Verify interactive mode.
