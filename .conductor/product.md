@@ -23,8 +23,9 @@ and Antigravity. It is published as the npm package `@kurokeita/conductor-for-al
   each target agent platform (Antigravity, GitHub Copilot, GitHub Copilot CLI, Windsurf)
 - **Prompt collection** (`commands/`): five prompts — setup, planning, implement, review, status
 - **Platform-aware file transformation**: each platform receives files in the format it expects
-  (e.g., `.prompt.md` for Copilot, `<name>/SKILL.md` for Copilot CLI)
+  (e.g., `.prompt.md` for Copilot prompts, `<name>/SKILL.md` for Copilot skills, `.toml` for Gemini CLI)
 - **Multi-platform install**: install to one or all platforms in a single command
+- **Agent Interoperability**: prompts include a "Network of Agents" section to guide users through the workflow by recommending specialized agents.
 
 ## Constraints
 
