@@ -28,13 +28,16 @@ jobs:
         with:
           node-version: 22
           cache: "pnpm"
-          always-auth: true
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Lint checking
         run: pnpm lint
+
+      - name: Build
+        run: pnpm build
 
       - name: Release
         env:
