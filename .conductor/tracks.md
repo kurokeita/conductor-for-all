@@ -5,5 +5,5 @@ Each track has its own detailed plan in its respective folder.
 
 ---
 
-- [ ] **Track: Copilot custom agent frontmatter injection**
-  *Link: [./tracks/copilot_agent_format_20260304/](./tracks/copilot_agent_format_20260304/)*
+- [x] **Track: Copilot custom agent frontmatter injection**
+  *Link: [./archive/copilot_agent_format_20260304/](./archive/copilot_agent_format_20260304/)*
