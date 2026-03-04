@@ -20,7 +20,7 @@
   - [x] Ensure `copyFile` logic correctly handles the directory-per-skill structure.
   - [x] **Verify**: Dry run output looks correct for skills.
 
-## Phase 4: Finalization
+## Phase 4: Finalization [checkpoint: 7e5cb25]
 
 - [x] Task: Quality Gate
   - [x] Run `pnpm run lint`.
