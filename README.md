@@ -87,23 +87,23 @@ A built-in CLI syncs all prompts to the right location for each platform.
 
 ```bash
 # Install to all platforms
-pnpx conductor-for-all --all
+pnpx @kurokeita/conductor-for-all --all
 
 # Install to specific platform(s)
-pnpx conductor-for-all --platform copilotAgents
-pnpx conductor-for-all --platform copilotAgents,antigravity
+pnpx @kurokeita/conductor-for-all --platform copilotAgents
+pnpx @kurokeita/conductor-for-all --platform copilotAgents,antigravity
 
 # Preview without writing anything
-pnpx conductor-for-all --platform copilotAgents --dry-run
+pnpx @kurokeita/conductor-for-all --platform copilotAgents --dry-run
 
 # Remove installed prompts
-pnpx conductor-for-all --platform copilotAgents --uninstall
+pnpx @kurokeita/conductor-for-all --platform copilotAgents --uninstall
 
 # Interactive mode (no flags)
-pnpx conductor-for-all
+pnpx @kurokeita/conductor-for-all
 ```
 
-> Works with any package manager: `npx conductor-for-all`, `bunx conductor-for-all`
+> Works with any package manager: `npx @kurokeita/conductor-for-all`, `bunx @kurokeita/conductor-for-all`
 
 | Platform | Prompts installed to |
 | :--- | :--- |
