@@ -90,14 +90,14 @@ A built-in CLI syncs all prompts to the right location for each platform.
 pnpx conductor-for-all --all
 
 # Install to specific platform(s)
-pnpx conductor-for-all --platform copilot
-pnpx conductor-for-all --platform copilot,antigravity
+pnpx conductor-for-all --platform copilotAgents
+pnpx conductor-for-all --platform copilotAgents,antigravity
 
 # Preview without writing anything
-pnpx conductor-for-all --platform copilot --dry-run
+pnpx conductor-for-all --platform copilotAgents --dry-run
 
 # Remove installed prompts
-pnpx conductor-for-all --platform copilot --uninstall
+pnpx conductor-for-all --platform copilotAgents --uninstall
 
 # Interactive mode (no flags)
 pnpx conductor-for-all
@@ -108,8 +108,10 @@ pnpx conductor-for-all
 | Platform | Prompts installed to |
 | :--- | :--- |
 | `antigravity` | `~/.gemini/antigravity/global_workflows` |
-| `copilot` | `.github/agents` |
-| `copilot CLI` | `~/.copilot/agents` |
+| `copilotAgents` | `.github/agents` |
+| `copilotPrompts` | `.github/prompts/*.prompt.md` |
+| `copilotCliAgents` | `~/.copilot/agents` |
+| `copilotCliSkills` | `~/.copilot/skills/<name>/SKILL.md` |
 | `gemini` | `~/.gemini/commands/conductor` (as `.toml`) |
 | `windsurf` | `~/.codeium/windsurf/global_workflows` |
 
@@ -120,14 +122,14 @@ git clone https://github.com/kurokeita/conductor-for-all
 cd conductor-for-all
 pnpm install
 pnpm dev           # interactive mode
-pnpm dev -- --platform copilot --dry-run
+pnpm dev -- --platform copilotAgents --dry-run
 ```
 
 ## Usage by Agent
 
 ### GitHub Copilot (VS Code / CLI)
 
-After running `conductor-for-all --platform copilot`, prompts are installed to `~/.copilot/prompts/` and discoverable globally across all workspaces. Reference them in VS Code chat:
+After running `conductor-for-all --platform copilotPrompts`, prompts are installed to `.github/prompts/` and discoverable by VS Code. Reference them in chat:
 
 <!-- markdownlint-disable MD040 -->
 ```
@@ -135,6 +137,8 @@ After running `conductor-for-all --platform copilot`, prompts are installed to `
 @workspace Use the setup prompt to set up this project
 ```
 <!-- markdownlint-enable MD040 -->
+
+For GitHub Copilot CLI, use `conductor-for-all --platform copilotCliSkills` to install as skills.
 
 ### Windsurf
 
