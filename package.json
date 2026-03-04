@@ -1,52 +1,63 @@
 {
-  "name": "@kurokeita/conductor-for-all",
-  "author": "Minh Le",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kurokeita/conductor-for-all"
-  },
-  "license": "GPL-3.0",
-  "version": "1.0.2",
-  "publishConfig": {
-    "access": "public"
-  },
-  "description": "Universal Conductor prompts for AI coding agents",
-  "type": "module",
-  "bin": {
-    "conductor-install": "./dist/install.js"
-  },
-  "scripts": {
-    "dev": "tsx bin/install.ts",
-    "build": "tsup",
-    "prepublishOnly": "tsup",
-    "install-prompts": "node dist/install.js",
-    "uninstall-prompts": "node dist/install.js --uninstall"
-  },
-  "files": [
-    "dist/",
-    "commands/"
-  ],
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "pnpm@10.28.0",
-  "keywords": [
-    "conductor",
-    "gemini",
-    "copilot",
-    "windsurf",
-    "ai",
-    "prompts"
-  ],
-  "dependencies": {
-    "@clack/prompts": "^1.0.1",
-    "commander": "^14.0.3",
-    "picocolors": "^1.1.1"
-  },
-  "devDependencies": {
-    "@types/node": "^25.3.3",
-    "tsup": "^8.5.1",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  }
+	"name": "@kurokeita/conductor-for-all",
+	"author": "Minh Le",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kurokeita/conductor-for-all"
+	},
+	"license": "GPL-3.0",
+	"version": "1.0.2",
+	"publishConfig": {
+		"access": "public"
+	},
+	"description": "Universal Conductor prompts for AI coding agents",
+	"type": "module",
+	"bin": {
+		"conductor-install": "./dist/install.js"
+	},
+	"scripts": {
+		"dev": "tsx bin/install.ts",
+		"build": "tsup",
+		"prepublishOnly": "tsup",
+		"install-prompts": "node dist/install.js",
+		"uninstall-prompts": "node dist/install.js --uninstall",
+		"lint": "pnpm run lint:ts && pnpm run lint:md '**/*.md'",
+		"lint:ts": "biome check --error-on-warnings .",
+		"lint:md": "markdownlint --ignore node_modules '**/*.md'",
+		"format": "biome check --write . && pnpm run lint:md --fix",
+		"release": "semantic-release"
+	},
+	"files": [
+		"dist/",
+		"commands/"
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "pnpm@10.28.0",
+	"keywords": [
+		"conductor",
+		"gemini",
+		"copilot",
+		"windsurf",
+		"ai",
+		"prompts",
+		"custom-agents",
+		"commands"
+	],
+	"dependencies": {
+		"@clack/prompts": "^1.0.1",
+		"commander": "^14.0.3",
+		"picocolors": "^1.1.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.5",
+		"@semantic-release/git": "^10.0.1",
+		"@types/node": "^25.3.3",
+		"markdownlint-cli": "^0.48.0",
+		"semantic-release": "^25.0.3",
+		"tsup": "^8.5.1",
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3"
+	}
 }
