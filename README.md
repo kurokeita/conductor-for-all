@@ -107,13 +107,13 @@ pnpx conductor-for-all
 
 | Platform | Prompts installed to |
 | :--- | :--- |
-| `antigravity` | `~/.gemini/antigravity/global_workflows` |
-| `copilotAgents` | `.github/agents` |
-| `copilotPrompts` | `.github/prompts/*.prompt.md` |
-| `copilotCliAgents` | `~/.copilot/agents` |
-| `copilotCliSkills` | `~/.copilot/skills/<name>/SKILL.md` |
-| `gemini` | `~/.gemini/commands/conductor` (as `.toml`) |
-| `windsurf` | `~/.codeium/windsurf/global_workflows` |
+| `Antigravity` | `~/.gemini/antigravity/global_workflows` |
+| `GitHub Copilot IDE Agents` | `.github/agents` |
+| `GitHub Copilot IDE Prompts` | `.github/prompts/*.prompt.md` |
+| `GitHub Copilot CLI Agents` | `~/.copilot/agents` |
+| `GitHub Copilot CLI Skills` | `~/.copilot/skills/<name>/SKILL.md` |
+| `Gemini CLI` | `~/.gemini/commands/conductor` (as `.toml`) |
+| `Windsurf` | `~/.codeium/windsurf/global_workflows` |
 
 Or clone and run locally:
 
