@@ -1,7 +1,7 @@
 # Implementation Plan: Display Version in CLI
 
 ## Phase 1: Foundation & Version Extraction
-- [ ] Task: Project Activation
+- [x] Task: Project Activation
     - [ ] Run `mcp_serena_activate_project`
 - [ ] Task: Create Test Suite for Version Display
     - [ ] **Write Tests**: Create `test/version.test.ts` (or equivalent) to verify `-v/--version` and help output.
