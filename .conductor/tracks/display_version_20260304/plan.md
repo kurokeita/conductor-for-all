@@ -14,9 +14,9 @@
 - [x] Task: Configure Commander Version
     - [x] **Implement**: Call `.version()` on the `commander` instance with the extracted version and support for `-v, --version`.
     - [x] **Verify**: Run `pnpm dev -- --version` and `pnpm dev -- --help`.
-- [ ] Task: Display Version in Interactive Mode
-    - [ ] **Implement**: Update the `p.intro()` or initial header in `bin/install.ts` to include a small footer with the version number using `pc.dim()`.
-    - [ ] **Verify**: Run `pnpm dev` and check the initial UI.
+- [x] Task: Display Version in Interactive Mode
+    - [x] **Implement**: Update the `p.intro()` or initial header in `bin/install.ts` to include a small footer with the version number using `pc.dim()`.
+    - [x] **Verify**: Run `pnpm dev` and check the initial UI.
 
 ## Phase 3: Finalization & Verification
 - [ ] Task: Refactor & Quality Gate

@@ -142,7 +142,7 @@ function removeFile(
 // ── Interactive flow ─────────────────────────────────────────────────────────
 
 async function runInteractive(files: PromptFile[]): Promise<void> {
-	p.intro(pc.bgCyan(pc.black(" conductor-install ")))
+	p.intro(`${pc.bgCyan(pc.black(" conductor-install "))} ${pc.dim(`v${version}`)}`)
 
 	const action = await p.select({
 		message: "What do you want to do?",
@@ -317,7 +317,9 @@ program
 			process.exit(1)
 		}
 
-		p.intro(pc.bgCyan(pc.black(" conductor-install ")))
+		p.intro(
+			`${pc.bgCyan(pc.black(" conductor-install "))} ${pc.dim(`v${version}`)}`,
+		)
 		await execute(files, platformKeys, {
 			dryRun: !!opts.dryRun,
 			uninstall: !!opts.uninstall,
