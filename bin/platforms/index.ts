@@ -1,4 +1,5 @@
 import type { Platform } from "../types.js"
+import { injectClaudeCodeFrontmatter } from "./claude-code.js"
 import { convertToCodexSkill } from "./codex.js"
 import { injectCopilotFrontmatter } from "./copilot.js"
 import { convertToGeminiToml } from "./gemini.js"
@@ -7,6 +8,12 @@ export const PLATFORMS: Record<string, Platform> = {
 	antigravity: {
 		label: "Antigravity",
 		workflowsPath: "~/.gemini/antigravity/global_workflows",
+	},
+	claudeCode: {
+		label: "Claude Code",
+		workflowsPath: "~/.claude/skills",
+		transformName: (name) => `${name.replace(/\.md$/, "")}/SKILL.md`,
+		transformContent: injectClaudeCodeFrontmatter,
 	},
 	codexSkills: {
 		label: "Codex Skills",

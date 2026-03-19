@@ -40,6 +40,8 @@
 	"packageManager": "pnpm@10.28.0",
 	"keywords": [
 		"conductor",
+		"claude",
+		"claude-code",
 		"codex",
 		"gemini",
 		"copilot",
