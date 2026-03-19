@@ -1,4 +1,5 @@
 import type { Platform } from "../types.js"
+import { convertToCodexSkill } from "./codex.js"
 import { injectCopilotFrontmatter } from "./copilot.js"
 import { convertToGeminiToml } from "./gemini.js"
 
@@ -6,6 +7,12 @@ export const PLATFORMS: Record<string, Platform> = {
 	antigravity: {
 		label: "Antigravity",
 		workflowsPath: "~/.gemini/antigravity/global_workflows",
+	},
+	codexSkills: {
+		label: "Codex Skills",
+		workflowsPath: "~/.codex/skills",
+		transformName: (name) => `${name.replace(/\.md$/, "")}/SKILL.md`,
+		transformContent: convertToCodexSkill,
 	},
 	copilotAgents: {
 		label: "GitHub Copilot IDE Agents",

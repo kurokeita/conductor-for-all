@@ -2,7 +2,7 @@
 
 **Measure twice, code once.**
 
-Universal, agent-agnostic prompts that bring [Conductor](https://github.com/gemini-cli-extensions/conductor)'s Context-Driven Development workflow to any AI coding agent — GitHub Copilot, Windsurf, Antigravity.
+Universal, agent-agnostic prompts that bring [Conductor](https://github.com/gemini-cli-extensions/conductor)'s Context-Driven Development workflow to any AI coding agent — Codex, GitHub Copilot, Windsurf, Antigravity.
 
 ## Philosophy
 
@@ -108,6 +108,7 @@ pnpx @kurokeita/conductor-for-all
 | Platform | Prompts installed to |
 | :--- | :--- |
 | `Antigravity` | `~/.gemini/antigravity/global_workflows` |
+| `Codex Skills` | `~/.codex/skills/<name>/SKILL.md` |
 | `GitHub Copilot IDE Agents` | `.github/agents` |
 | `GitHub Copilot IDE Prompts` | `.github/prompts/*.prompt.md` |
 | `GitHub Copilot CLI Agents` | `~/.copilot/agents` |
@@ -139,6 +140,10 @@ After running `conductor-for-all --platform copilotPrompts`, prompts are install
 <!-- markdownlint-enable MD040 -->
 
 For GitHub Copilot CLI, use `conductor-for-all --platform copilotCliSkills` to install as skills.
+
+### Codex
+
+Run `conductor-for-all --platform codexSkills` to install each Conductor command as a Codex skill in `~/.codex/skills/<name>/SKILL.md`.
 
 ### Windsurf
 
