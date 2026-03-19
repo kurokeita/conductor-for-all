@@ -40,6 +40,7 @@
 	"packageManager": "pnpm@10.28.0",
 	"keywords": [
 		"conductor",
+		"codex",
 		"gemini",
 		"copilot",
 		"windsurf",
